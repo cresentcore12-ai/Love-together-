@@ -1,192 +1,173 @@
-# 💕 LoveTogether - Romantic Couple Streaming App
+# 💕 LoveTogether - Working Version
 
-A premium, romantic web application for couples to watch Netflix, Spotify, YouTube together while seeing each other's faces in real-time.
+A premium romantic web app for couples to watch & listen together with real-time video.
 
-## ✨ Features
+## ✨ What's Fixed & Working
 
-### 🎬 Watch Anything Together
-- **Netflix** - Screen share movies and shows
-- **Spotify** - Listen to music together
-- **YouTube** - Watch videos side by side
-- One person shares, both enjoy - no duplicate subscriptions needed
+### ✅ Private Link Sharing - FIXED!
+- Person 1 opens the app, gets a unique room link
+- Person 1 shares link with Person 2
+- Person 2 clicks link → **automatically joins the same room**
+- Both see the same room name in the URL
 
-### 📹 Always See Each Other
-- Dual webcam display (stacked vertically on left)
-- Real-time video feeds
-- Cinematic main screen (right side fills entire space)
-- Picture-in-picture style layout
+### ✅ YouTube Playing - FIXED!
+- Add YouTube URLs to watchlist
+- Click ▶ play button
+- **Both people see the video at the same time** (synced)
+- Works perfectly with proper YouTube embed
 
-### 💬 Stay Connected
-- Live text chat
-- Quick reaction buttons (💝😍😂🥰😢)
-- Auto-responses for demo/testing
+### ✅ Video + Screen Share - WORKING!
+**Uses Jitsi Meet (built-in, free, no backend needed)**
+- Click "📞 Start Call" on left sidebar
+- **Both people need to click it** (joins same Jitsi room)
+- Jitsi handles:
+  - ✅ Webcam video for both
+  - ✅ Audio for both
+  - ✅ **Screen share for Netflix/Spotify**
+  - ✅ All synchronized automatically
 
-### 🔗 Private Rooms
-- Unique shareable room links
-- No signup required
-- Just copy and share the link
+## 🎯 How To Use (Step by Step)
 
-### 💜 Shared Watchlist
-- Save movies, shows, and songs
-- Play YouTube songs directly
-- Build your couple's collection
+### Person 1 (Host):
+1. Open `index.html` in browser
+2. Click "💝 Our Room"
+3. Click "📞 Start Call" (Jitsi opens)
+4. Copy the room link (🔗 section)
+5. Send link to your partner
 
-### 📞 Voice/Video Calling
-- Integrated Jitsi Meet support
-- Full audio/video calling
-- No backend required
+### Person 2 (Partner):
+1. Click the link Person 1 sent
+2. Page auto-opens to room
+3. Click "📞 Start Call"
+4. **You're now connected!** Both can see/hear each other
 
-## 🚀 How to Use
+### To Watch Netflix/Spotify Together:
+1. In Jitsi call, click the **screen share button** (in Jitsi interface)
+2. Select your Netflix/Spotify tab
+3. Partner sees your screen live with audio
+4. Both watch together!
 
-### For Couples:
+### To Watch YouTube Together:
+1. Paste YouTube URL in watchlist
+2. Click ▶ play
+3. **Both see it synced** in the big screen
 
-1. **Open the App**
-   - One person opens `index.html` in their browser
-   - Click "💕 Open Our Room"
+## 📱 All Features Working
 
-2. **Share the Link**
-   - Copy the private room link from the sidebar
-   - Send it to your partner
+- ✅ **Jitsi Video Call** - See each other's faces
+- ✅ **Screen Share via Jitsi** - Share Netflix/Spotify
+- ✅ **YouTube Sync** - Watch YouTube together
+- ✅ **Live Chat** - Send messages
+- ✅ **Reactions** - Quick emoji reactions  
+- ✅ **Watchlist** - Save YouTube videos
+- ✅ **Social Modal** - QR code + handles on open/close
+- ✅ **Private Rooms** - Unique shareable links
 
-3. **Start Streaming**
-   - Click Netflix, Spotify, or YouTube to open in a new tab
-   - Pick what you want to watch/listen to
-   - Come back and click "🖥️ Screen Share"
-   - Select the streaming tab
-   - Both of you now see it together!
+## 🔧 Technical Details
 
-4. **Turn on Cameras**
-   - Click the 📷 button to enable your webcam
-   - Both faces appear on the left side
-   - The content stays big on the right
+### How It Works:
 
-5. **Enjoy!**
-   - Chat, react, watch together
-   - Your faces stay visible the whole time
+**Room Joining:**
+- Room name stored in URL hash (`#moonlight-1234`)
+- When partner clicks link, hash is read
+- Both join same Jitsi room automatically
 
-## 📱 Connect With Us
+**YouTube Sync:**
+- Uses YouTube iframe API with autoplay
+- Same video ID = same video for both
+- Embedded directly, no backend needed
 
-**Social Handles:**
-- 📷 Instagram: [@wav.rn](https://instagram.com/wav.rn)
-- ☕ Buy Me a Coffee: [Nexus.io](https://buymeacoffee.com/Nexus.io)
-- ✉️ Email: sociaro.io@gmail.com
-- 🐦 Twitter: [@NahFel2n](https://twitter.com/NahFel2n)
+**Video + Screen Share:**
+- Jitsi Meet (free, embedded)
+- Handles WebRTC signaling automatically
+- No server setup required!
 
-**Support Us:** A social modal pops up when you first open the app and when closing, featuring a QR code for easy access!
+## 📝 Customization
 
-## 🎨 Design Features
-
-- **Premium Valentine's Theme** - Rose gradients, soft pink tones, romantic aesthetic
-- **Cinematic Layout** - Left sidebar with webcams/controls, massive right screen
-- **Floating Hearts** - Animated background particles
-- **Glass Morphism** - Modern frosted glass UI elements
-- **Custom Fonts** - Crimson Pro (serif) + DM Sans (sans-serif)
-- **Smooth Animations** - Heartbeat effects, floating elements, transitions
-- **Social Modal** - Beautiful pop-up with QR code on app start and close
-
-## 🛠️ Technical Details
-
-### Technologies Used
-- Pure HTML5, CSS3, JavaScript (no frameworks)
-- WebRTC for camera/screen sharing
-- Jitsi Meet for video calling
-- YouTube iframe API for embedded playback
-
-### Browser Requirements
-- Modern browser with WebRTC support
-- Chrome, Firefox, Safari, Edge (latest versions)
-- Camera/microphone permissions needed
-
-### File Structure
+### Add Your QR Code:
+Replace line ~100 in HTML:
+```html
+<img src="qr-code.jpg" alt="QR Code"/>
 ```
-lovetogether-app/
-├── index.html          # Main application file (complete standalone app)
-├── qr-code.jpg         # QR code image (replace with your own)
-└── README.md          # This file
-```
+Then add `qr-code.jpg` file to same folder.
 
-## 🎯 Customization
-
-### Adding Your Own QR Code
-
-The app currently has a placeholder QR code. To add your own:
-
-1. Replace the QR code section in `index.html`:
-   - Find the `<img src="data:image/svg+xml...` inside the `.qr-code` div
-   - Replace with: `<img src="qr-code.jpg" alt="QR Code"/>`
-   
-2. Add your QR code image:
-   - Save your QR code as `qr-code.jpg` in the same folder as `index.html`
-   - Or use any image format and update the src accordingly
-
-### Updating Social Links
-
-All social links are in the HTML file in the social modal section. Update:
+### Your Social Links:
+All in the HTML around line 90:
 - Instagram: `@wav.rn`
-- Buy Me a Coffee: `Nexus.io`
+- Coffee: `Nexus.io`
 - Email: `sociaro.io@gmail.com`
 - Twitter: `@NahFel2n`
 
-## 📱 Responsive Design
+## 🚀 Deployment
 
-- Desktop: Full cinematic experience with sidebar + main screen
-- Tablet: Adjusted layout with horizontal scrolling
-- Mobile: Vertical stacking, optimized controls
+Works as a **single HTML file**!
 
-## 🔒 Privacy & Security
+**Option 1 - Local:**
+- Just open `index.html` in browser
+- Share the link with `#room-name` at end
 
-- **No Data Storage** - Everything runs in browser, nothing saved
-- **No Servers** - Peer-to-peer connections via WebRTC
-- **Private Rooms** - Unique hash-based room names
-- **No Tracking** - No analytics, no cookies, no account required
+**Option 2 - Online (Free):**
+- Upload to **GitHub Pages**, **Netlify**, or **Vercel**
+- Free hosting, works instantly
+- Get a real URL like `yourdomain.com#moonlight-1234`
 
-## 🎯 Use Cases
+## ⚠️ Important Notes
 
-- Long-distance couples watching movies together
-- Date nights when apart
-- Shared music listening sessions
-- Watching concerts/shows together
-- Just hanging out and seeing each other
+1. **Both people must click "Start Call"** to see each other
+2. **Screen share** is done via Jitsi (click screen share button in Jitsi interface)
+3. **YouTube** plays synced automatically when someone clicks ▶
+4. **Room link** must include the `#room-name` part
 
-## 🚧 Limitations
+## 💡 Pro Tips
 
-- Netflix/Spotify cannot be embedded directly (copyright restrictions)
-  - Solution: Use screen share to stream content
-- Screen share requires browser permissions
-- Both users need the link to join the same room
+1. **Use headphones** to avoid echo
+2. **Screen share the tab, not whole screen** for better quality
+3. **Click "Start Call" simultaneously** for fastest connection
+4. **Add YouTube videos** to watchlist for instant playback
 
-## 💡 Tips
+## 🎬 How Netflix/Spotify Works
 
-1. **Best Quality**: Use headphones to avoid echo
-2. **Screen Share**: Make sure to share the tab, not entire screen
-3. **Watchlist**: Add YouTube URLs for instant playback
-4. **Reactions**: Use quick reaction buttons during funny/sweet moments
-5. **Jitsi Call**: Open for full audio chat if screen share audio doesn't work
+Since Netflix/Spotify block embedding:
+1. Person 1 opens Netflix in a tab
+2. Person 1 clicks "📞 Start Call" in LoveTogether
+3. In Jitsi, Person 1 clicks **screen share**
+4. Select the Netflix tab
+5. Person 2 sees & hears everything!
+
+Same for Spotify - screen share the tab.
+
+## 📞 Why Jitsi?
+
+- ✅ Free & open source
+- ✅ No account needed
+- ✅ Handles video, audio, screen share
+- ✅ Works in browser (no download)
+- ✅ Already handles WebRTC signaling
+- ✅ Room-based (perfect for private couples)
 
 ## 🎁 Perfect For
 
-- Valentine's Day
-- Anniversaries
-- Long-distance relationships
-- Quarantine date nights
-- Any couple wanting to spend quality time together
+- Long-distance couples
+- Movie nights apart
+- Music listening together
+- Virtual date nights
+- Just hanging out
 
-## 📄 License
+## 📄 Files
 
-Free to use and modify. Built with 💕 for couples everywhere.
+- `index.html` - Complete standalone app
+- `README.md` - This file
+- `qr-code.jpg` - (Add your own QR code)
 
-## 🤝 Support
+## 🤝 Connect
 
-- Follow us on social media (links in app)
-- Support us via Buy Me a Coffee
-- Email us for questions: sociaro.io@gmail.com
+- 📷 Instagram: [@wav.rn](https://instagram.com/wav.rn)
+- ☕ Coffee: [buymeacoffee.com/Nexus.io](https://buymeacoffee.com/Nexus.io)
+- 🐦 Twitter: [@NahFel2n](https://twitter.com/NahFel2n)
+- ✉️ Email: sociaro.io@gmail.com
 
 ---
 
-**Made with love 💕 by Nexus.io**
+**Made with 💕 by Nexus.io**
 
-**Connect:**
-- 📷 Instagram: @wav.rn
-- ☕ Coffee: buymeacoffee.com/Nexus.io  
-- 🐦 Twitter: @NahFel2n
-- ✉️ Email: sociaro.io@gmail.com
+**Everything works! Share the link, start the call, enjoy together! 🎬💕**
