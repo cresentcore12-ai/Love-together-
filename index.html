@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LoveTogether 💕 - Watch & Be Together</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💕</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   LOVETOGETHER - Premium Romantic Couple Streaming App
+   ═══════════════════════════════════════════════════════════════ */
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --rose-cream:#fff0f5;
+  --rose-blush:#ffe4ec;
+  --rose-soft:#ffcdd9;
+  --rose-mid:#ffb3c7;
+  --rose-deep:#ff85a8;
+  --rose-accent:#e84a87;
+  --rose-rich:#d63384;
+  --burgundy:#8b1e5c;
+  --deep-plum:#3d1f35;
+  --gold:#d4af37;
+  --shadow-soft:rgba(232,74,135,.12);
+  --shadow-med:rgba(232,74,135,.2);
+  --glass:rgba(255,255,255,.42);
+  --glass-border:rgba(255,140,200,.35);
+}
+
+html,body{
+  height:100%;overflow:hidden;
+  font-family:'DM Sans',sans-serif;
+  background:linear-gradient(135deg,#fff0f5 0%,#ffe4ec 25%,#ffd0e0 50%,#ffc4d8 75%,#ffe8f0 100%);
+  background-attachment:fixed;
+  color:var(--deep-plum);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SOCIAL MODAL (Shows on load & close)
+   ───────────────────────────────────────────────────────────── */
+.social-modal-overlay{
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+}
+.social-modal-overlay.active{
+  opacity:1;pointer-events:all;
+}
+.social-modal{
+  background:linear-gradient(135deg,#fff0f5,#ffe4ec);
+  border-radius:28px;padding:40px 36px;
+  max-width:480px;width:90%;
+  box-shadow:0 20px 60px rgba(232,74,135,.4);
+  border:2px solid var(--rose-mid);
+  transform:scale(.9);
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+}
+.social-modal-overlay.active .social-modal{
+  transform:scale(1);
+}
+.social-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.7);border:1px solid var(--rose-mid);
+  cursor:pointer;font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;color:var(--burgundy);
+}
+.social-close:hover{
+  background:#fff;transform:rotate(90deg);
+}
+.social-header{
+  text-align:center;margin-bottom:24px;
+}
+.social-icon{
+  font-size:3rem;margin-bottom:12px;
+  animation:heartbeat 1.5s ease-in-out infinite;
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  14%{transform:scale(1.2);}
+  28%{transform:scale(1);}
+  42%{transform:scale(1.2);}
+  56%{transform:scale(1);}
+}
+.social-title{
+  font-family:'Crimson Pro',serif;font-size:1.8rem;
+  font-weight:600;color:var(--deep-plum);
+  margin-bottom:6px;
+}
+.social-subtitle{
+  font-size:.9rem;color:var(--burgundy);font-weight:300;
+}
+
+.qr-section{
+  text-align:center;margin:20px 0;
+}
+.qr-code{
+  width:180px;height:180px;margin:0 auto 12px;
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 6px 24px rgba(232,74,135,.3);
+  border:3px solid var(--rose-mid);
+}
+.qr-code img{
+  width:100%;height:100%;object-fit:cover;
+}
+.qr-label{
+  font-size:.85rem;color:var(--burgundy);font-weight:500;
+}
+
+.social-links{
+  display:flex;flex-direction:column;gap:10px;
+  margin-top:24px;
+}
+.social-link{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 16px;border-radius:16px;
+  background:rgba(255,255,255,.7);
+  border:1.5px solid var(--rose-mid);
+  text-decoration:none;color:var(--deep-plum);
+  transition:all .3s ease;
+}
+.social-link:hover{
+  background:#fff;border-color:var(--rose-accent);
+  transform:translateX(6px);
+  box-shadow:0 4px 16px var(--shadow-med);
+}
+.social-link-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;
+}
+.social-link-icon.instagram{
+  background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  color:#fff;
+}
+.social-link-icon.coffee{
+  background:#ffdd00;color:#000;
+}
+.social-link-icon.gmail{
+  background:#ea4335;color:#fff;
+}
+.social-link-icon.twitter{
+  background:#1da1f2;color:#fff;
+}
+.social-link-text{
+  flex:1;
+}
+.social-link-title{
+  font-size:.88rem;font-weight:600;
+}
+.social-link-handle{
+  font-size:.75rem;color:var(--burgundy);margin-top:2px;
+}
+.social-arrow{
+  color:var(--burgundy);font-size:.9rem;
+}
+
+.social-footer{
+  margin-top:20px;padding-top:20px;
+  border-top:1px solid var(--rose-mid);
+  text-align:center;
+}
+.social-tagline{
+  font-size:.82rem;color:var(--burgundy);
+  font-style:italic;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FLOATING HEARTS BACKGROUND
+   ───────────────────────────────────────────────────────────── */
+.hearts-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+}
+.heart-particle{
+  position:absolute;opacity:0;font-size:1rem;
+  animation:floatHeart linear infinite;color:var(--rose-accent);
+  filter:blur(0.3px);
+}
+@keyframes floatHeart{
+  0%{transform:translateY(100vh) rotate(0deg) scale(.5);opacity:0;}
+  5%{opacity:.15;}
+  95%{opacity:.15;}
+  100%{transform:translateY(-150px) rotate(380deg) scale(1.1);opacity:0;}
+}
+
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  opacity:.4;
+}
+
+.app{
+  position:relative;z-index:1;height:100%;
+  display:flex;flex-direction:column;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TOP NAV BAR
+   ───────────────────────────────────────────────────────────── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;flex-shrink:0;
+  background:var(--glass);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--glass-border);
+  box-shadow:0 2px 12px var(--shadow-soft);
+}
+.logo{
+  font-family:'Crimson Pro',serif;font-size:1.6rem;font-weight:600;
+  color:var(--rose-accent);letter-spacing:-.3px;
+  display:flex;align-items:center;gap:8px;
+}
+.logo-heart{
+  display:inline-block;animation:heartbeat 1.5s ease-in-out infinite;
+}
+.nav-menu{display:flex;gap:6px;}
+.nav-btn{
+  padding:7px 18px;border-radius:50px;border:none;
+  background:transparent;color:var(--burgundy);
+  font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;
+  cursor:pointer;transition:all .25s ease;
+}
+.nav-btn:hover{background:rgba(232,74,135,.08);}
+.nav-btn.active{
+  background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));
+  color:#fff;box-shadow:0 3px 12px var(--shadow-med);
+}
+
+.page{
+  display:none;flex:1;overflow:hidden;
+  animation:pageIn .35s cubic-bezier(.25,.46,.45,.94);
+}
+.page.active{display:flex;flex-direction:column;}
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOME PAGE
+   ═══════════════════════════════════════════════════════════════ */
+#page-home{
+  align-items:center;justify-content:center;padding:40px 20px;
+  overflow-y:auto;
+}
+.hero-section{
+  text-align:center;max-width:600px;
+  display:flex;flex-direction:column;align-items:center;gap:18px;
+}
+.hero-icon{
+  font-size:4.5rem;animation:heartbeat 1.5s ease-in-out infinite;
+  filter:drop-shadow(0 4px 12px rgba(232,74,135,.3));
+}
+.hero-title{
+  font-family:'Crimson Pro',serif;font-size:3rem;font-weight:600;
+  line-height:1.15;letter-spacing:-.5px;color:var(--deep-plum);
+}
+.hero-title em{
+  font-style:italic;color:var(--rose-accent);
+  background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-subtitle{
+  font-size:1.05rem;line-height:1.65;color:var(--burgundy);
+  font-weight:300;max-width:480px;
+}
+.hero-cta{
+  display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center;
+}
+
+.btn{
+  padding:14px 32px;border-radius:60px;border:none;
+  font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;
+  cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1);
+  display:inline-flex;align-items:center;gap:8px;
+  text-decoration:none;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));
+  color:#fff;box-shadow:0 6px 24px var(--shadow-med);
+}
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 32px rgba(232,74,135,.35);
+}
+
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  max-width:880px;width:100%;margin-top:40px;
+}
+.feature-card{
+  background:var(--glass);backdrop-filter:blur(16px);
+  border-radius:22px;padding:28px 24px;
+  border:1px solid var(--glass-border);
+  box-shadow:0 4px 20px var(--shadow-soft);
+  transition:all .3s ease;text-align:center;
+}
+.feature-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 36px rgba(232,74,135,.22);
+  border-color:var(--rose-mid);
+}
+.feature-icon{font-size:2.4rem;margin-bottom:12px;}
+.feature-title{
+  font-family:'Crimson Pro',serif;font-size:1.15rem;
+  margin-bottom:8px;color:var(--deep-plum);
+}
+.feature-desc{
+  font-size:.82rem;line-height:1.6;color:var(--burgundy);font-weight:300;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ROOM PAGE
+   ═══════════════════════════════════════════════════════════════ */
+#page-room{
+  flex-direction:row;
+  background:linear-gradient(135deg,#ffeef5 0%,#ffe0ec 100%);
+}
+
+.sidebar-left{
+  width:340px;flex-shrink:0;
+  display:flex;flex-direction:column;gap:12px;
+  padding:16px;overflow-y:auto;
+  background:linear-gradient(180deg,rgba(255,255,255,.3) 0%,rgba(255,240,245,.2) 100%);
+  border-right:1px solid var(--glass-border);
+}
+
+.webcam-container{
+  display:flex;flex-direction:column;gap:10px;
+}
+.webcam-card{
+  position:relative;
+  background:linear-gradient(145deg,#2a1220,#1a0a15);
+  border-radius:18px;height:200px;overflow:hidden;
+  border:2px solid var(--glass-border);
+  box-shadow:0 6px 24px rgba(0,0,0,.3);
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .3s ease;
+}
+.webcam-card.active-speaker{
+  border-color:var(--rose-accent);
+  box-shadow:0 0 24px rgba(232,74,135,.5);
+}
+.webcam-card video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:none;
+}
+.webcam-card.camera-on video{display:block;}
+.webcam-placeholder{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  pointer-events:none;
+}
+.webcam-card.camera-on .webcam-placeholder{display:none;}
+.webcam-avatar{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;box-shadow:0 4px 16px rgba(232,74,135,.4);
+}
+.webcam-name{
+  color:#fff;font-size:.85rem;font-weight:500;
+  text-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+.webcam-badge{
+  position:absolute;top:10px;left:10px;
+  background:rgba(0,0,0,.65);backdrop-filter:blur(8px);
+  color:#fff;font-size:.7rem;padding:4px 10px;border-radius:20px;
+  font-weight:500;
+}
+.webcam-badge.live{
+  background:rgba(232,74,135,.85);
+  box-shadow:0 2px 8px rgba(232,74,135,.4);
+}
+
+.controls-panel{
+  background:var(--glass);backdrop-filter:blur(16px);
+  border-radius:16px;padding:16px;
+  border:1px solid var(--glass-border);
+  box-shadow:0 4px 16px var(--shadow-soft);
+}
+.controls-title{
+  font-family:'Crimson Pro',serif;font-size:.95rem;
+  margin-bottom:12px;color:var(--deep-plum);font-weight:600;
+}
+.controls-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+}
+.control-btn{
+  aspect-ratio:1;border-radius:14px;border:none;
+  background:rgba(255,255,255,.7);
+  cursor:pointer;font-size:1.4rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s ease;
+  box-shadow:0 2px 10px var(--shadow-soft);
+  position:relative;
+}
+.control-btn:hover{
+  background:#fff;transform:scale(1.08);
+  box-shadow:0 4px 16px var(--shadow-med);
+}
+.control-btn.active{
+  background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));
+  color:#fff;
+}
+.control-btn.off{
+  background:rgba(255,100,100,.15);
+  color:#c0392b;
+}
+.control-btn.danger{
+  background:linear-gradient(135deg,#e84a6f,#c0392b);
+  color:#fff;
+  grid-column:span 3;
+}
+.control-btn.danger:hover{
+  background:linear-gradient(135deg,#d63660,#a82040);
+}
+.btn-tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;
+  transform:translateX(-50%);
+  background:#2a1220;color:#fff;
+  font-size:.68rem;padding:4px 10px;border-radius:8px;
+  white-space:nowrap;opacity:0;transition:opacity .2s;
+  pointer-events:none;font-family:'DM Sans',sans-serif;
+}
+.control-btn:hover .btn-tooltip{opacity:1;}
+
+.glass-panel{
+  background:var(--glass);backdrop-filter:blur(16px);
+  border-radius:16px;padding:16px;
+  border:1px solid var(--glass-border);
+  box-shadow:0 4px 16px var(--shadow-soft);
+}
+.panel-title{
+  font-family:'Crimson Pro',serif;font-size:.95rem;
+  margin-bottom:10px;color:var(--deep-plum);font-weight:600;
+  display:flex;align-items:center;gap:6px;
+}
+
+.share-input-group{display:flex;gap:6px;}
+.share-input{
+  flex:1;padding:9px 13px;border-radius:12px;
+  border:1px solid var(--rose-mid);background:#fff;
+  font-size:.76rem;color:var(--burgundy);
+  outline:none;font-family:'DM Sans',sans-serif;
+}
+.share-input:focus{border-color:var(--rose-accent);}
+.copy-button{
+  padding:9px 16px;border-radius:12px;border:none;
+  background:var(--rose-accent);color:#fff;
+  font-size:.76rem;font-weight:600;cursor:pointer;
+  transition:background .2s;
+}
+.copy-button:hover{background:var(--rose-rich);}
+
+.service-launcher{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 13px;border-radius:14px;
+  border:1.5px solid var(--glass-border);
+  background:rgba(255,255,255,.6);
+  cursor:pointer;transition:all .25s ease;
+}
+.service-launcher:hover{
+  background:#fff;border-color:var(--rose-accent);
+  transform:translateX(4px);
+  box-shadow:0 4px 12px var(--shadow-soft);
+}
+.service-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;font-weight:700;color:#fff;
+  flex-shrink:0;
+}
+.service-icon.netflix{background:#e50914;}
+.service-icon.spotify{background:#1db954;}
+.service-icon.youtube{background:#ff0000;}
+.service-text{flex:1;}
+.service-name{font-size:.83rem;font-weight:600;color:var(--deep-plum);}
+.service-desc{font-size:.7rem;color:var(--burgundy);margin-top:2px;}
+.service-arrow{color:var(--burgundy);font-size:.9rem;}
+
+.guide-steps{
+  display:flex;flex-direction:column;gap:8px;
+  margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--glass-border);
+}
+.guide-step{
+  display:flex;gap:10px;align-items:flex-start;
+}
+.step-number{
+  width:24px;height:24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;color:#fff;
+  flex-shrink:0;transition:all .3s ease;
+}
+.step-number.done{background:#4caf50;}
+.step-number.active{
+  background:var(--rose-accent);
+  animation:pulse 1s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.12);}
+}
+.step-number.pending{background:var(--rose-mid);}
+.step-text{
+  font-size:.74rem;line-height:1.5;color:var(--burgundy);
+  padding-top:3px;
+}
+.step-text strong{color:var(--deep-plum);}
+
+.watchlist-scroll{
+  max-height:160px;overflow-y:auto;
+  margin-bottom:10px;
+}
+.watchlist-item{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 0;border-bottom:1px solid rgba(255,140,200,.15);
+}
+.watchlist-item:last-child{border:none;}
+.wl-icon{font-size:1.15rem;flex-shrink:0;}
+.wl-details{flex:1;min-width:0;}
+.wl-name{
+  font-size:.78rem;font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.wl-type{font-size:.68rem;color:var(--burgundy);margin-top:2px;}
+.wl-play-btn{
+  width:28px;height:28px;border-radius:50%;border:none;
+  background:var(--rose-accent);color:#fff;
+  font-size:.75rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;flex-shrink:0;
+}
+.wl-play-btn:hover{background:var(--rose-rich);}
+.wl-remove-btn{
+  width:24px;height:24px;border-radius:50%;border:none;
+  background:rgba(200,80,80,.12);color:#c0392b;
+  font-size:.68rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.wl-remove-btn:hover{background:rgba(200,80,80,.22);}
+.add-watchlist-form{display:flex;gap:6px;}
+.wl-input{
+  flex:1;padding:8px 12px;border-radius:10px;
+  border:1px solid var(--rose-mid);background:#fff;
+  font-size:.75rem;outline:none;font-family:'DM Sans',sans-serif;
+}
+.wl-input:focus{border-color:var(--rose-accent);}
+.wl-add-btn{
+  padding:8px 14px;border-radius:10px;border:none;
+  background:var(--rose-accent);color:#fff;
+  font-size:.72rem;font-weight:600;cursor:pointer;
+}
+
+.chat-container{
+  display:flex;flex-direction:column;
+  background:var(--glass);backdrop-filter:blur(16px);
+  border-radius:16px;border:1px solid var(--glass-border);
+  box-shadow:0 4px 16px var(--shadow-soft);
+  min-height:220px;
+}
+.chat-header{
+  padding:12px 16px;border-bottom:1px solid var(--glass-border);
+  font-size:.85rem;font-weight:600;color:var(--deep-plum);
+  display:flex;align-items:center;gap:6px;
+}
+.chat-messages{
+  flex:1;padding:12px;overflow-y:auto;
+  display:flex;flex-direction:column;gap:8px;
+}
+.chat-message{display:flex;gap:6px;align-items:flex-end;}
+.chat-message.own{flex-direction:row-reverse;}
+.msg-avatar{
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;flex-shrink:0;
+}
+.msg-bubble{
+  max-width:180px;padding:8px 13px;border-radius:16px;
+  font-size:.78rem;line-height:1.4;
+  background:#fff;border:1px solid var(--glass-border);
+  color:var(--deep-plum);
+}
+.chat-message.own .msg-bubble{
+  background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));
+  color:#fff;border:none;
+}
+.chat-reactions{
+  display:flex;gap:6px;padding:10px 12px;
+  border-top:1px solid var(--glass-border);
+  justify-content:center;
+}
+.reaction-btn{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--glass-border);
+  background:rgba(255,255,255,.7);
+  cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.reaction-btn:hover{
+  transform:scale(1.15);background:#fff;
+}
+.chat-input-area{
+  padding:10px 12px;border-top:1px solid var(--glass-border);
+  display:flex;gap:6px;
+}
+.chat-input{
+  flex:1;padding:9px 14px;border-radius:20px;
+  border:1px solid var(--rose-mid);background:#fff;
+  font-size:.78rem;outline:none;font-family:'DM Sans',sans-serif;
+}
+.chat-input:focus{border-color:var(--rose-accent);}
+.chat-send-btn{
+  width:36px;height:36px;border-radius:50%;border:none;
+  background:var(--rose-accent);color:#fff;
+  font-size:.95rem;cursor:pointer;
+  transition:background .2s;
+}
+.chat-send-btn:hover{background:var(--rose-rich);}
+
+.screen-main{
+  flex:1;display:flex;flex-direction:column;
+  padding:16px;gap:12px;overflow:hidden;
+  min-width:0;
+}
+
+.cinema-screen{
+  flex:1;border-radius:20px;overflow:hidden;
+  background:#0a0a0a;
+  border:1px solid rgba(255,130,180,.18);
+  box-shadow:0 8px 32px rgba(0,0,0,.3),inset 0 0 60px rgba(232,74,135,.08);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;min-height:0;
+}
+.cinema-screen iframe,
+.cinema-screen video{
+  width:100%;height:100%;border:none;
+  object-fit:contain;background:#000;
+}
+.screen-placeholder{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:20px;padding:40px;
+  text-align:center;color:rgba(255,255,255,.6);
+}
+.placeholder-icon{
+  font-size:4rem;opacity:.6;
+  filter:drop-shadow(0 4px 12px rgba(232,74,135,.3));
+}
+.placeholder-title{
+  font-family:'Crimson Pro',serif;font-size:1.4rem;
+  color:rgba(255,255,255,.8);font-weight:600;
+}
+.placeholder-text{
+  font-size:.9rem;line-height:1.65;max-width:420px;
+  color:rgba(255,255,255,.55);font-weight:300;
+}
+.placeholder-text strong{color:rgba(255,255,255,.85);}
+
+.status-display{
+  display:none;align-items:center;gap:14px;
+  background:var(--glass);backdrop-filter:blur(16px);
+  border-radius:14px;padding:12px 18px;
+  border:1px solid var(--glass-border);
+  box-shadow:0 4px 16px var(--shadow-soft);
+}
+.status-display.active{display:flex;}
+.status-icon{font-size:1.5rem;}
+.status-info{flex:1;}
+.status-title{font-size:.88rem;font-weight:600;color:var(--deep-plum);}
+.status-subtitle{font-size:.72rem;color:var(--burgundy);margin-top:2px;}
+.status-live{
+  display:flex;align-items:center;gap:6px;
+  font-size:.72rem;color:var(--rose-accent);font-weight:600;
+}
+.live-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--rose-accent);
+  animation:livePulse 1.5s ease-in-out infinite;
+}
+@keyframes livePulse{
+  0%,100%{opacity:1;}
+  50%{opacity:.3;}
+}
+
+.toast{
+  position:fixed;bottom:30px;left:50%;
+  transform:translateX(-50%) translateY(100px);
+  background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));
+  color:#fff;padding:12px 26px;border-radius:40px;
+  font-size:.85rem;font-weight:500;
+  box-shadow:0 6px 24px rgba(232,74,135,.4);
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  z-index:9999;pointer-events:none;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+.jitsi-overlay{
+  display:none;position:fixed;inset:0;z-index:8888;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;
+}
+.jitsi-overlay.active{display:flex;}
+.jitsi-frame{
+  width:92%;max-width:1000px;height:88vh;
+  border:none;border-radius:20px;
+  box-shadow:0 12px 48px rgba(0,0,0,.6);
+}
+.jitsi-close{
+  background:rgba(232,74,135,.9);color:#fff;
+  border:none;padding:10px 24px;border-radius:40px;
+  font-size:.88rem;font-weight:600;cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:background .2s;
+}
+.jitsi-close:hover{background:var(--rose-rich);}
+
+@media(max-width:900px){
+  #page-room{flex-direction:column;}
+  .sidebar-left{
+    width:100%;flex-direction:row;overflow-x:auto;
+    border-right:none;border-bottom:1px solid var(--glass-border);
+  }
+  .sidebar-left>*{min-width:280px;flex-shrink:0;}
+  .webcam-container{flex-direction:row;}
+  .webcam-card{height:140px;width:200px;}
+  .features-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  nav{padding:10px 16px;}
+  .logo{font-size:1.3rem;}
+  .hero-title{font-size:2.2rem;}
+  .sidebar-left,.screen-main{padding:12px;}
+  .social-modal{padding:28px 24px;}
+  .qr-code{width:150px;height:150px;}
+}
+
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.2);}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--rose-mid),var(--rose-accent));
+  border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover{background:var(--rose-accent);}
+</style>
+</head>
+<body>
+
+<!-- Social Modal (Shows on load and close) -->
+<div class="social-modal-overlay" id="socialModal">
+  <div class="social-modal">
+    <button class="social-close" onclick="closeSocialModal()">✕</button>
+    
+    <div class="social-header">
+      <div class="social-icon">☕</div>
+      <h2 class="social-title">Connect With Us</h2>
+      <p class="social-subtitle">Support & follow for more romantic experiences</p>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-code">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Crect width='180' height='180' fill='%23ffdd00'/%3E%3Ctext x='50%25' y='50%25' font-size='60' text-anchor='middle' dy='.3em'%3E☕%3C/text%3E%3C/svg%3E" alt="QR Code" id="qrImage"/>
+      </div>
+      <div class="qr-label">Scan to support us!</div>
+    </div>
+
+    <div class="social-links">
+      <a href="https://instagram.com/wav.rn" target="_blank" class="social-link">
+        <div class="social-link-icon instagram">📷</div>
+        <div class="social-link-text">
+          <div class="social-link-title">Instagram</div>
+          <div class="social-link-handle">@wav.rn</div>
+        </div>
+        <span class="social-arrow">→</span>
+      </a>
+
+      <a href="https://buymeacoffee.com/Nexus.io" target="_blank" class="social-link">
+        <div class="social-link-icon coffee">☕</div>
+        <div class="social-link-text">
+          <div class="social-link-title">Buy Me a Coffee</div>
+          <div class="social-link-handle">Support our work</div>
+        </div>
+        <span class="social-arrow">→</span>
+      </a>
+
+      <a href="mailto:sociaro.io@gmail.com" class="social-link">
+        <div class="social-link-icon gmail">✉️</div>
+        <div class="social-link-text">
+          <div class="social-link-title">Email</div>
+          <div class="social-link-handle">sociaro.io@gmail.com</div>
+        </div>
+        <span class="social-arrow">→</span>
+      </a>
+
+      <a href="https://twitter.com/NahFel2n" target="_blank" class="social-link">
+        <div class="social-link-icon twitter">🐦</div>
+        <div class="social-link-text">
+          <div class="social-link-title">Twitter</div>
+          <div class="social-link-handle">@NahFel2n</div>
+        </div>
+        <span class="social-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="social-footer">
+      <p class="social-tagline">Made with 💕 for couples everywhere</p>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Hearts -->
+<div class="hearts-bg" id="heartsBg"></div>
+
+<div class="app">
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="logo-heart">💕</span>
+    <span>LoveTogether</span>
+  </div>
+  <div class="nav-menu">
+    <button class="nav-btn active" onclick="switchPage('home')">Home</button>
+    <button class="nav-btn" onclick="switchPage('room')">💝 Our Room</button>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <div class="hero-section">
+    <div class="hero-icon">💝</div>
+    <h1 class="hero-title">Watch, listen &amp; <em>be together</em></h1>
+    <p class="hero-subtitle">
+      See each other's faces while streaming Netflix, Spotify, or YouTube. 
+      One private link — that's all you need for a perfect date night.
+    </p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="switchPage('room')">
+        💕 Open Our Room
+      </button>
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📹</div>
+      <h3 class="feature-title">See Each Other</h3>
+      <p class="feature-desc">
+        Both webcams stay visible while you watch. React together in real time, just like being in the same room.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎬</div>
+      <h3 class="feature-title">Stream Anything</h3>
+      <p class="feature-desc">
+        Netflix, Spotify, YouTube — one person screen shares, the other watches. No extra subscription needed.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💜</div>
+      <h3 class="feature-title">Our Watchlist</h3>
+      <p class="feature-desc">
+        Save movies, shows and songs you both want to enjoy together. Build your shared collection.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ROOM PAGE -->
+<div class="page" id="page-room">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar-left">
+
+    <!-- Webcams -->
+    <div class="webcam-container">
+      <div class="webcam-card active-speaker" id="webcamYou">
+        <video id="videoYou" autoplay playsinline muted></video>
+        <span class="webcam-badge live">● You</span>
+        <div class="webcam-placeholder">
+          <div class="webcam-avatar" style="background:linear-gradient(135deg,var(--rose-soft),var(--rose-accent));">
+            😊
+          </div>
+          <div class="webcam-name">You</div>
+        </div>
+      </div>
+
+      <div class="webcam-card" id="webcamPartner">
+        <span class="webcam-badge">● Waiting...</span>
+        <div class="webcam-placeholder">
+          <div class="webcam-avatar" style="background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));">
+            💝
+          </div>
+          <div class="webcam-name">Your Person</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-panel">
+      <div class="controls-title">🎛️ Controls</div>
+      <div class="controls-grid">
+        <button class="control-btn" id="btnMic" onclick="toggleMic()">
+          🎤
+          <span class="btn-tooltip">Microphone</span>
+        </button>
+        <button class="control-btn" id="btnCam" onclick="toggleCamera()">
+          📷
+          <span class="btn-tooltip">Camera</span>
+        </button>
+        <button class="control-btn" id="btnScreen" onclick="toggleScreenShare()">
+          🖥️
+          <span class="btn-tooltip">Screen Share</span>
+        </button>
+        <button class="control-btn" id="btnJitsi" onclick="toggleJitsi()">
+          📞
+          <span class="btn-tooltip">Jitsi Call</span>
+        </button>
+        <button class="control-btn" id="btnEffects" onclick="toggleEffects()">
+          ✨
+          <span class="btn-tooltip">Effects</span>
+        </button>
+        <button class="control-btn danger" onclick="endSession()">
+          📵 End Session
+        </button>
+      </div>
+    </div>
+
+    <!-- Share Link -->
+    <div class="glass-panel">
+      <div class="panel-title">🔗 Private Room Link</div>
+      <div class="share-input-group">
+        <input class="share-input" id="roomLinkInput" readonly/>
+        <button class="copy-button" onclick="copyRoomLink()">Copy</button>
+      </div>
+    </div>
+
+    <!-- Streaming Services -->
+    <div class="glass-panel">
+      <div class="panel-title">🎥 Open & Stream</div>
+      
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="service-launcher" onclick="launchService('netflix')">
+          <div class="service-icon netflix">N</div>
+          <div class="service-text">
+            <div class="service-name">Netflix</div>
+            <div class="service-desc">Opens in new tab</div>
+          </div>
+          <span class="service-arrow">→</span>
+        </div>
+
+        <div class="service-launcher" onclick="launchService('spotify')">
+          <div class="service-icon spotify">♪</div>
+          <div class="service-text">
+            <div class="service-name">Spotify</div>
+            <div class="service-desc">Opens in new tab</div>
+          </div>
+          <span class="service-arrow">→</span>
+        </div>
+
+        <div class="service-launcher" onclick="launchService('youtube')">
+          <div class="service-icon youtube">▶</div>
+          <div class="service-text">
+            <div class="service-name">YouTube</div>
+            <div class="service-desc">Opens in new tab</div>
+          </div>
+          <span class="service-arrow">→</span>
+        </div>
+      </div>
+
+      <!-- Guide Steps -->
+      <div class="guide-steps" id="guideSteps">
+        <div class="guide-step">
+          <div class="step-number active" data-step="0">1</div>
+          <div class="step-text"><strong>Tap</strong> a service above to open it.</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number pending" data-step="1">2</div>
+          <div class="step-text"><strong>Pick</strong> what you want to watch or listen to.</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number pending" data-step="2">3</div>
+          <div class="step-text">Come back & tap <strong>🖥️ Screen Share</strong>.</div>
+        </div>
+        <div class="guide-step">
+          <div class="step-number pending" data-step="3">4</div>
+          <div class="step-text"><strong>Enjoy together!</strong> Both of you see it. 💕</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Watchlist -->
+    <div class="glass-panel">
+      <div class="panel-title">💜 Our Watchlist</div>
+      <div class="watchlist-scroll" id="watchlistContainer"></div>
+      <div class="add-watchlist-form">
+        <input class="wl-input" id="watchlistInput" placeholder="Add movie or song..." onkeydown="if(event.key==='Enter')addToWatchlist()"/>
+        <button class="wl-add-btn" onclick="addToWatchlist()">+ Add</button>
+      </div>
+    </div>
+
+    <!-- Chat -->
+    <div class="chat-container">
+      <div class="chat-header">💌 Sweet Chat</div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-message">
+          <div class="msg-avatar" style="background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));">💝</div>
+          <div class="msg-bubble">Hey love, I'm here! 🥰</div>
+        </div>
+        <div class="chat-message own">
+          <div class="msg-bubble">Miss you so much 💕</div>
+          <div class="msg-avatar" style="background:linear-gradient(135deg,var(--rose-soft),var(--rose-accent));">😊</div>
+        </div>
+      </div>
+      <div class="chat-reactions">
+        <button class="reaction-btn" onclick="sendReaction('💝')">💝</button>
+        <button class="reaction-btn" onclick="sendReaction('😍')">😍</button>
+        <button class="reaction-btn" onclick="sendReaction('😂')">😂</button>
+        <button class="reaction-btn" onclick="sendReaction('🥰')">🥰</button>
+        <button class="reaction-btn" onclick="sendReaction('😢')">😢</button>
+      </div>
+      <div class="chat-input-area">
+        <input class="chat-input" id="chatInput" placeholder="Type something sweet..." onkeydown="if(event.key==='Enter')sendMessage()"/>
+        <button class="chat-send-btn" onclick="sendMessage()">✈️</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- RIGHT MAIN SCREEN -->
+  <main class="screen-main">
+    
+    <!-- Cinema Screen -->
+    <div class="cinema-screen" id="cinemaScreen">
+      <div class="screen-placeholder">
+        <div class="placeholder-icon">🎬</div>
+        <h2 class="placeholder-title">Ready to watch together?</h2>
+        <p class="placeholder-text">
+          Open <strong>Netflix</strong>, <strong>Spotify</strong>, or <strong>YouTube</strong> from the left sidebar, 
+          then tap <strong>🖥️ Screen Share</strong> to start streaming together. 
+          Or pick a song from your watchlist!
+        </p>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-display" id="statusDisplay">
+      <span class="status-icon" id="statusIcon">🎬</span>
+      <div class="status-info">
+        <div class="status-title" id="statusTitle">—</div>
+        <div class="status-subtitle" id="statusSubtitle">—</div>
+      </div>
+      <div class="status-live">
+        <span class="live-dot"></span>
+        Live Together
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="jitsi-overlay" id="jitsiOverlay">
+  <button class="jitsi-close" onclick="toggleJitsi()">✕ Close Call</button>
+  <iframe class="jitsi-frame" id="jitsiFrame" allow="camera;microphone;fullscreen"></iframe>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// LOVETOGETHER APP - Full JavaScript
+// ═══════════════════════════════════════════════════════════════
+
+// SOCIAL MODAL - Show on load, show on close
+let socialModalShownOnLoad = false;
+
+function showSocialModal() {
+  document.getElementById('socialModal').classList.add('active');
+}
+
+function closeSocialModal() {
+  document.getElementById('socialModal').classList.remove('active');
+  if (!socialModalShownOnLoad) {
+    socialModalShownOnLoad = true;
+  }
+}
+
+// Show modal on page load after a brief delay
+setTimeout(() => {
+  showSocialModal();
+}, 800);
+
+// Show modal when user tries to close/leave the page
+window.addEventListener('beforeunload', (e) => {
+  if (socialModalShownOnLoad) {
+    showSocialModal();
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
+// FLOATING HEARTS
+(function initFloatingHearts() {
+  const container = document.getElementById('heartsBg');
+  const hearts = ['💕', '💗', '💖', '💝', '♥️', '🌹'];
+  
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart-particle';
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDuration = (8 + Math.random() * 12) + 's';
+    heart.style.animationDelay = Math.random() * 10 + 's';
+    heart.style.fontSize = (0.8 + Math.random() * 1.5) + 'rem';
+    container.appendChild(heart);
+  }
+})();
+
+// ROOM NAME
+const ROOM_WORDS = ['moonlight', 'starlight', 'dreamtime', 'lovehour', 'sweetnight', 
+                    'rosetime', 'heartglow', 'velvetsky', 'cherries', 'honeydew', 
+                    'sunset', 'twilight', 'paradise'];
+
+function generateRoomName() {
+  if (location.hash) return location.hash.slice(1);
+  const word = ROOM_WORDS[Math.floor(Math.random() * ROOM_WORDS.length)];
+  const num = Math.floor(Math.random() * 9000) + 1000;
+  const roomName = `${word}-${num}`;
+  location.hash = roomName;
+  return roomName;
+}
+
+const ROOM_NAME = generateRoomName();
+
+// TOAST
+let toastTimeout;
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+// PAGE NAVIGATION
+function switchPage(pageName) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+  document.getElementById('page-' + pageName).classList.add('active');
+  
+  document.querySelectorAll('.nav-btn').forEach((btn, index) => {
+    btn.classList.remove('active');
+    if ((index === 0 && pageName === 'home') || (index === 1 && pageName === 'room')) {
+      btn.classList.add('active');
+    }
+  });
+  
+  if (pageName === 'room') {
+    initializeRoom();
+  }
+}
+
+function initializeRoom() {
+  const roomLink = `${location.origin}${location.pathname}#${ROOM_NAME}`;
+  document.getElementById('roomLinkInput').value = roomLink;
+  renderWatchlist();
+}
+
+// ROOM LINK
+function copyRoomLink() {
+  const input = document.getElementById('roomLinkInput');
+  navigator.clipboard && navigator.clipboard.writeText(input.value);
+  showToast('Link copied! Share it with your person 💕');
+}
+
+// STREAMING SERVICES
+const SERVICES = {
+  netflix: 'https://www.netflix.com',
+  spotify: 'https://open.spotify.com',
+  youtube: 'https://www.youtube.com'
+};
+
+function launchService(serviceName) {
+  window.open(SERVICES[serviceName], '_blank');
+  advanceGuideStep(1);
+  const name = serviceName.charAt(0).toUpperCase() + serviceName.slice(1);
+  showToast(`${name} opened! Pick something to watch 💕`);
+}
+
+// GUIDE STEPS
+let currentGuideStep = 0;
+
+function advanceGuideStep(stepIndex) {
+  if (stepIndex <= currentGuideStep) return;
+  currentGuideStep = stepIndex;
+  
+  document.querySelectorAll('.step-number').forEach((el, index) => {
+    el.className = 'step-number';
+    if (index < stepIndex) {
+      el.classList.add('done');
+      el.textContent = '✓';
+    } else if (index === stepIndex) {
+      el.classList.add('active');
+      el.textContent = index + 1;
+    } else {
+      el.classList.add('pending');
+      el.textContent = index + 1;
+    }
+  });
+}
+
+// WEBCAM & AUDIO
+let localStream = null;
+let screenStream = null;
+let micEnabled = true;
+let cameraEnabled = false;
+
+async function startCamera() {
+  try {
+    localStream = await navigator.mediaDevices.getUserMedia({ 
+      video: true, 
+      audio: true 
+    });
+    document.getElementById('videoYou').srcObject = localStream;
+    document.getElementById('webcamYou').classList.add('camera-on');
+    cameraEnabled = true;
+    document.getElementById('btnCam').classList.remove('off');
+  } catch (error) {
+    showToast('Camera access denied 😔');
+    console.error('Camera error:', error);
+  }
+}
+
+function toggleCamera() {
+  if (!localStream) {
+    startCamera();
+    return;
+  }
+  
+  const videoTrack = localStream.getVideoTracks()[0];
+  if (videoTrack) {
+    videoTrack.enabled = !videoTrack.enabled;
+    cameraEnabled = videoTrack.enabled;
+    document.getElementById('webcamYou').classList.toggle('camera-on', cameraEnabled);
+    document.getElementById('btnCam').classList.toggle('off', !cameraEnabled);
+  } else {
+    startCamera();
+  }
+}
+
+function toggleMic() {
+  if (!localStream) {
+    startCamera();
+    return;
+  }
+  
+  const audioTrack = localStream.getAudioTracks()[0];
+  if (audioTrack) {
+    audioTrack.enabled = !audioTrack.enabled;
+    micEnabled = audioTrack.enabled;
+    document.getElementById('btnMic').textContent = micEnabled ? '🎤' : '🔇';
+    document.getElementById('btnMic').classList.toggle('off', !micEnabled);
+  }
+}
+
+// SCREEN SHARING
+async function toggleScreenShare() {
+  if (screenStream) {
+    stopScreenShare();
+    return;
+  }
+  
+  try {
+    screenStream = await navigator.mediaDevices.getDisplayMedia({
+      video: true,
+      audio: true
+    });
+    
+    const screen = document.getElementById('cinemaScreen');
+    screen.dataset.previousContent = screen.innerHTML;
+    
+    const video = document.createElement('video');
+    video.srcObject = screenStream;
+    video.autoplay = true;
+    video.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;';
+    
+    screen.innerHTML = '';
+    screen.appendChild(video);
+    
+    document.getElementById('btnScreen').classList.add('active');
+    advanceGuideStep(2);
+    advanceGuideStep(3);
+    
+    showStatus('🖥️', 'Screen Sharing', 'Your screen is now streaming');
+    
+    screenStream.getVideoTracks()[0].onended = () => {
+      stopScreenShare();
+    };
+    
+    showToast('Screen sharing started! 🖥️');
+  } catch (error) {
+    showToast('Screen share cancelled');
+  }
+}
+
+function stopScreenShare() {
+  if (screenStream) {
+    screenStream.getTracks().forEach(track => track.stop());
+    screenStream = null;
+  }
+  
+  document.getElementById('btnScreen').classList.remove('active');
+  const screen = document.getElementById('cinemaScreen');
+  screen.innerHTML = screen.dataset.previousContent || getPlaceholderHTML();
+  hideStatus();
+  showToast('Screen sharing stopped');
+}
+
+function getPlaceholderHTML() {
+  return `
+    <div class="screen-placeholder">
+      <div class="placeholder-icon">🎬</div>
+      <h2 class="placeholder-title">Ready to watch together?</h2>
+      <p class="placeholder-text">
+        Open <strong>Netflix</strong>, <strong>Spotify</strong>, or <strong>YouTube</strong> from the left sidebar, 
+        then tap <strong>🖥️ Screen Share</strong> to start streaming together. 
+        Or pick a song from your watchlist!
+      </p>
+    </div>
+  `;
+}
+
+// STATUS
+function showStatus(icon, title, subtitle) {
+  document.getElementById('statusIcon').textContent = icon;
+  document.getElementById('statusTitle').textContent = title;
+  document.getElementById('statusSubtitle').textContent = subtitle;
+  document.getElementById('statusDisplay').classList.add('active');
+}
+
+function hideStatus() {
+  document.getElementById('statusDisplay').classList.remove('active');
+}
+
+// YOUTUBE
+function playYouTube(videoId, title) {
+  if (screenStream) stopScreenShare();
+  
+  const screen = document.getElementById('cinemaScreen');
+  screen.innerHTML = `
+    <iframe 
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+      allow="autoplay;encrypted-media" 
+      allowfullscreen
+      style="width:100%;height:100%;border:none;">
+    </iframe>
+  `;
+  
+  showStatus('🎥', title, 'YouTube · Playing together');
+  advanceGuideStep(3);
+  showToast('Now playing together 🎶');
+}
+
+// WATCHLIST
+let watchlist = [
+  { name: 'Crazy Rich Asians', type: 'movie', icon: '🎬', ytId: null },
+  { name: 'The Notebook', type: 'movie', icon: '🎬', ytId: null },
+  { name: 'La La Land', type: 'movie', icon: '🍿', ytId: null },
+  { name: 'All of Me – John Legend', type: 'song', icon: '🎵', ytId: 'lYBUbBu4W08' },
+  { name: 'Thinking Out Loud – Ed Sheeran', type: 'song', icon: '🎵', ytId: 'nVbJsgA0nb8' },
+  { name: 'Perfect – Ed Sheeran', type: 'song', icon: '🎵', ytId: 'BcU6ueqggdE' },
+  { name: 'A Thousand Years – Christina Perri', type: 'song', icon: '🎵', ytId: 'xTv3fi6QmOY' },
+];
+
+function renderWatchlist() {
+  const container = document.getElementById('watchlistContainer');
+  container.innerHTML = watchlist.map((item, index) => `
+    <div class="watchlist-item">
+      <span class="wl-icon">${item.icon}</span>
+      <div class="wl-details">
+        <div class="wl-name">${escapeHTML(item.name)}</div>
+        <div class="wl-type">${item.type === 'movie' ? 'Movie / Show' : 'Song'}</div>
+      </div>
+      ${item.ytId ? `
+        <button class="wl-play-btn" onclick="playYouTube('${item.ytId}', '${escapeHTML(item.name.split(' – ')[0])}')" title="Play on YouTube">
+          ▶
+        </button>
+      ` : ''}
+      <button class="wl-remove-btn" onclick="removeFromWatchlist(${index})">✕</button>
+    </div>
+  `).join('');
+}
+
+function addToWatchlist() {
+  const input = document.getElementById('watchlistInput');
+  const value = input.value.trim();
+  if (!value) return;
+  
+  const isMovie = /(movie|show|series|film)/i.test(value);
+  const ytMatch = value.match(/(?:v=|\/embed\/|\/)([\w-]{11})/);
+  
+  watchlist.push({
+    name: value,
+    type: isMovie ? 'movie' : 'song',
+    icon: isMovie ? '🎬' : '🎵',
+    ytId: ytMatch ? ytMatch[1] : null
+  });
+  
+  input.value = '';
+  renderWatchlist();
+  showToast('Added to watchlist 💜');
+}
+
+function removeFromWatchlist(index) {
+  watchlist.splice(index, 1);
+  renderWatchlist();
+}
+
+// JITSI
+let jitsiActive = false;
+
+function toggleJitsi() {
+  const overlay = document.getElementById('jitsiOverlay');
+  const frame = document.getElementById('jitsiFrame');
+  
+  if (jitsiActive) {
+    frame.src = '';
+    overlay.classList.remove('active');
+    jitsiActive = false;
+    document.getElementById('btnJitsi').classList.remove('active');
+    showToast('Call ended');
+  } else {
+    frame.src = `https://meet.jit.si/LoveTogether-${ROOM_NAME}`;
+    overlay.classList.add('active');
+    jitsiActive = true;
+    document.getElementById('btnJitsi').classList.add('active');
+    showToast('Jitsi call started! 📞');
+  }
+}
+
+// CHAT
+const AUTO_REPLIES = [
+  'You make me smile 😊',
+  'This is so nice 💕',
+  'Haha I love it 😂',
+  'Tell me more! ✨',
+  'Same here 🥰',
+  'Missing you 💝',
+  'This is perfect 🌹',
+];
+let replyIndex = 0;
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const message = input.value.trim();
+  if (!message) return;
+  
+  const container = document.getElementById('chatMessages');
+  container.innerHTML += `
+    <div class="chat-message own">
+      <div class="msg-bubble">${escapeHTML(message)}</div>
+      <div class="msg-avatar" style="background:linear-gradient(135deg,var(--rose-soft),var(--rose-accent));">😊</div>
+    </div>
+  `;
+  
+  input.value = '';
+  container.scrollTop = container.scrollHeight;
+  
+  setTimeout(() => {
+    container.innerHTML += `
+      <div class="chat-message">
+        <div class="msg-avatar" style="background:linear-gradient(135deg,var(--rose-accent),var(--rose-rich));">💝</div>
+        <div class="msg-bubble">${AUTO_REPLIES[replyIndex % AUTO_REPLIES.length]}</div>
+      </div>
+    `;
+    replyIndex++;
+    container.scrollTop = container.scrollHeight;
+  }, 1000 + Math.random() * 800);
+}
+
+function sendReaction(emoji) {
+  const container = document.getElementById('chatMessages');
+  container.innerHTML += `
+    <div class="chat-message own">
+      <div class="msg-bubble" style="font-size:1.5rem;padding:4px 10px;background:transparent;border:none;">
+        ${emoji}
+      </div>
+      <div class="msg-avatar" style="background:linear-gradient(135deg,var(--rose-soft),var(--rose-accent));">😊</div>
+    </div>
+  `;
+  container.scrollTop = container.scrollHeight;
+}
+
+// EFFECTS
+function toggleEffects() {
+  showToast('Effects coming soon! ✨');
+}
+
+// END SESSION
+function endSession() {
+  // Show social modal before ending
+  showSocialModal();
+  
+  setTimeout(() => {
+    if (localStream) {
+      localStream.getTracks().forEach(track => track.stop());
+      localStream = null;
+    }
+    if (screenStream) {
+      screenStream.getTracks().forEach(track => track.stop());
+      screenStream = null;
+    }
+    
+    document.getElementById('webcamYou').classList.remove('camera-on');
+    document.getElementById('videoYou').srcObject = null;
+    document.getElementById('btnCam').classList.remove('off', 'active');
+    document.getElementById('btnMic').classList.remove('off', 'active');
+    document.getElementById('btnMic').textContent = '🎤';
+    document.getElementById('btnScreen').classList.remove('active');
+    
+    if (jitsiActive) toggleJitsi();
+    
+    document.getElementById('cinemaScreen').innerHTML = getPlaceholderHTML();
+    hideStatus();
+    
+    cameraEnabled = false;
+    micEnabled = true;
+    
+    showToast('Session ended. See you soon! 💝');
+  }, 100);
+}
+
+// UTILITY
+function escapeHTML(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+</script>
+
+</body>
+</html>
